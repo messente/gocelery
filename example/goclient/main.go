@@ -49,7 +49,7 @@ func main() {
 	argB := rand.Intn(10)
 
 	// run task
-	asyncResult, err := cli.Delay(taskName, argA, argB)
+	asyncResult, err := cli.Delay(taskName, []any{argA, argB})
 	if err != nil {
 		panic(err)
 	}
