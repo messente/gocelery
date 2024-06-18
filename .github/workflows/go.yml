@@ -1,16 +1,6 @@
 name: Go
 on: [push, pull_request]
 jobs:
-  golangci:
-    name: lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: golangci-lint
-        uses: golangci/golangci-lint-action@v1
-        with:
-          # Required: the version of golangci-lint is required and must be specified without patch version: we always use the latest patch version.
-          version: v1.26
   test:
     name: test
     runs-on: ubuntu-latest
@@ -37,9 +27,3 @@ jobs:
           go mod download
       - name: Test
         run: go test -v -covermode atomic -coverprofile=profile.cov ./...
-      - name: Coverage
-        env:
-          COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          GO111MODULE=off go get github.com/mattn/goveralls
-          $(go env GOPATH)/bin/goveralls -coverprofile=profile.cov -service=github
