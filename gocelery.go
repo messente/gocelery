@@ -64,16 +64,28 @@ func (cc *CeleryClient) WaitForStopWorker() {
 }
 
 // Delay gets asynchronous result
-func (cc *CeleryClient) Delay(task string, args ...interface{}) (*AsyncResult, error) {
+func (cc *CeleryClient) Delay(task string, args []interface{}, opts ...CeleryTaskOption) (*AsyncResult, error) {
 	celeryTask := getTaskMessage(task)
 	celeryTask.Args = args
+	for _, opt := range opts {
+		err := opt(celeryTask)
+		if err != nil {
+			return nil, err
+		}
+	}
 	return cc.delay(celeryTask)
 }
 
 // DelayKwargs gets asynchronous results with argument map
-func (cc *CeleryClient) DelayKwargs(task string, args map[string]interface{}) (*AsyncResult, error) {
+func (cc *CeleryClient) DelayKwargs(task string, kwargs map[string]interface{}, opts ...CeleryTaskOption) (*AsyncResult, error) {
 	celeryTask := getTaskMessage(task)
-	celeryTask.Kwargs = args
+	celeryTask.Kwargs = kwargs
+	for _, opt := range opts {
+		err := opt(celeryTask)
+		if err != nil {
+			return nil, err
+		}
+	}
 	return cc.delay(celeryTask)
 }
 
