@@ -1,6 +1,6 @@
 # gocelery
 
-Go Client/Server for Celery Distributed Task Queue
+This is a fork of https://github.com/gocelery/gocelery. Go Client/Server for Celery Distributed Task Queue
 
 [![Build Status](https://github.com/gocelery/gocelery/workflows/Go/badge.svg)](https://github.com/gocelery/gocelery/workflows/Go/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/gocelery/gocelery/badge.svg?branch=master)](https://coveralls.io/github/gocelery/gocelery?branch=master)
@@ -198,15 +198,6 @@ Celery Message Protocol Version 1
     "kwargs": {}
 }
 ```
-
-## Projects
-
-Please let us know if you use gocelery in your project!
-
-## Contributing
-
-You are more than welcome to make any contributions.
-Please create Pull Request for any changes.
 
 ## LICENSE
 
