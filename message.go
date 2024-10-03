@@ -35,8 +35,10 @@ func (cm *CeleryMessage) reset() {
 var celeryMessagePool = sync.Pool{
 	New: func() interface{} {
 		return &CeleryMessage{
-			Body:        "",
-			Headers:     nil,
+			Body: "",
+			Headers: map[string]any{
+				"ignore_result": true,
+			},
 			ContentType: "application/json",
 			Properties: CeleryProperties{
 				BodyEncoding:  "base64",
